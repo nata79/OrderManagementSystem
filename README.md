@@ -58,7 +58,7 @@ The following image represents the entities of the system.
 
 ### Status Transitions
 
-`POST /orders:id/status_transitions` Create a status transition (change the status of an order)
+`POST /orders/:id/status_transitions` Create a status transition (change the status of an order)
 
 ### Line Items
 
