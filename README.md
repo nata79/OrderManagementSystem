@@ -29,7 +29,7 @@ The following image represents the entities of the system.
 
 
 
-![Class Model](http://i.imgur.com/z9c2XAJ.jpg)
+![Class Model](http://i.imgur.com/q3LajbQ.jpg)
 
 
 ## API
@@ -50,13 +50,15 @@ The following image represents the entities of the system.
 
 `GET /orders` Get all orders
 
-`POST /orders` Create a order
+`POST /orders` Create an order
 
-`GET /orders/:id` Get a order
+`GET /orders/:id` Get an order
 
-`PUT /orders/:id` Update a order
+`PUT /orders/:id` Update an order
 
 ### Status Transitions
+
+`GET /orders/:id/status_transitions` Get all the orders status transitions
 
 `POST /orders/:id/status_transitions` Create a status transition (change the status of an order)
 
