@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130713105213) do
+ActiveRecord::Schema.define(version: 20130713141916) do
 
   create_table "line_items", force: true do |t|
     t.integer  "product_id"
@@ -41,5 +41,17 @@ ActiveRecord::Schema.define(version: 20130713105213) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "status_transitions", force: true do |t|
+    t.integer  "order_id"
+    t.string   "event"
+    t.string   "from"
+    t.string   "to"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "status_transitions", ["order_id"], name: "index_status_transitions_on_order_id"
 
 end
