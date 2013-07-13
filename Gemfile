@@ -6,6 +6,7 @@ gem 'sqlite3'
 gem 'money-rails'
 
 gem 'state_machine'
+gem 'enumerize'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
