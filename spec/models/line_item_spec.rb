@@ -44,4 +44,36 @@ describe LineItem do
 
     line_item.net_price.should eq Money.new(50, :gbp)
   end
+
+  describe 'order in placed status' do
+    let(:order) { create(:order) }
+
+    it 'cant be created with' do
+      order.place
+      build(:line_item, order: order).should_not be_valid
+    end
+
+    it 'cant be updated' do
+      line_item = build(:line_item, order: order)
+      order.place
+      line_item.update_attributes quantity: 20
+      line_item.should_not be_valid
+    end
+  end
+
+  describe 'order in payed status' do
+    let(:order) { create(:order) }
+
+    it 'cant be created with' do
+      order.place; order.pay
+      build(:line_item, order: order).should_not be_valid
+    end
+
+    it 'cant be updated' do
+      line_item = build(:line_item, order: order)
+      order.place; order.pay
+      line_item.update_attributes quantity: 20
+      line_item.should_not be_valid
+    end
+  end
 end
