@@ -91,4 +91,22 @@ describe Order do
       order.should_not be_valid
     end
   end
+
+  describe 'locked?' do
+    let(:order) { create(:order) }
+
+    it 'returns false if status is draft' do      
+      order.locked?.should be_false
+    end
+
+    it 'returns true if status is placed' do      
+      order.place
+      order.locked?.should be_true
+    end
+
+    it 'returns true if status is payed' do      
+      order.place; order.pay
+      order.locked?.should be_true
+    end
+  end
 end

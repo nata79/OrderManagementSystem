@@ -19,6 +19,10 @@ class Order < ActiveRecord::Base
       transition :placed => :payed
     end
   end
+
+  def locked?
+    self.placed? or self.payed?
+  end
 private
   def order_date_not_in_the_past
     errors.add :order_date, 'past date' unless self.order_date.nil? or self.order_date >= Date.today
@@ -32,9 +36,5 @@ private
 
   def prevent_destroy
     raise 'Orders cannot be destroyed'
-  end
-
-  def locked?
-    self.placed? or self.payed?
-  end
+  end  
 end
