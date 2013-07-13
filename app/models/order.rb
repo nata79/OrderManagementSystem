@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  has_many :transitions, class_name: 'StatusTransition'
+
   validates :order_date, :vat, presence: true
 
   validate :order_date_not_in_the_past, on: :create
