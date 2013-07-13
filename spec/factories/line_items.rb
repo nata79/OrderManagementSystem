@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :line_item do
-    product nil
-    order nil
-    net_price ""
-    quantity ""
+    product
+    order
+    quantity 10
   end
 end
