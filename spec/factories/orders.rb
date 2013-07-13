@@ -2,8 +2,6 @@
 
 FactoryGirl.define do
   factory :order do
-    status "MyString"
-    order_date "2013-07-13"
-    vat ""
+    order_date Date.today
   end
 end
