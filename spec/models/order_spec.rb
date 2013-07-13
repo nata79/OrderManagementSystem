@@ -18,6 +18,10 @@ describe Order do
     end
   end
 
+  it 'sets a defalut value for vat' do
+    create(:order).vat.should eq VAT
+  end
+
   it 'cant be destroyed' do
     order = create(:order)
     lambda{ order.destroy }.should raise_error

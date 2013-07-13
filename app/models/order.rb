@@ -1,8 +1,10 @@
 class Order < ActiveRecord::Base
-  validates :order_date, presence: true
+  validates :order_date, :vat, presence: true
 
   validate :order_date_not_in_the_past, on: :create
   validate :should_not_be_updated, if: :locked?
+
+  before_validation :set_vat_default
 
   before_destroy :prevent_destroy
 
@@ -32,6 +34,10 @@ private
     if order_date_changed? or vat_changed?
       errors.add :base, 'cannot be updated with this status'
     end
+  end
+
+  def set_vat_default
+    self.vat ||= (VAT or 0.2)
   end
 
   def prevent_destroy
