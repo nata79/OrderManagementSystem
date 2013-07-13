@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130712234320) do
+ActiveRecord::Schema.define(version: 20130713105213) do
+
+  create_table "line_items", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "order_id"
+    t.integer  "net_price_pennies",  default: 0,     null: false
+    t.string   "net_price_currency", default: "GBP", null: false
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id"
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id"
+
+  create_table "orders", force: true do |t|
+    t.string   "status"
+    t.date     "order_date"
+    t.float    "vat"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.string   "name"
