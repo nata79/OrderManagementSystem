@@ -113,4 +113,20 @@ describe Order do
       order.locked?.should be_true
     end
   end
+
+  describe 'status_after_event' do
+    it 'returns placed for place' do
+      create(:order).status_after_event(:place).should eq 'placed'
+    end
+
+    it 'returns payed for pay' do
+      order = create(:order)
+      order.place
+      order.status_after_event(:pay).should eq 'payed'
+    end
+
+    it 'returns canceled for cancel' do
+      create(:order).status_after_event(:cancel).should eq 'canceled'
+    end
+  end
 end

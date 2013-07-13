@@ -25,6 +25,10 @@ class Order < ActiveRecord::Base
   def locked?
     self.placed? or self.payed?
   end
+
+  def status_after_event event
+    self.status_transitions.select{ |t| t.event == event }.first.try(:to)
+  end
 private
   def order_date_not_in_the_past
     errors.add :order_date, 'past date' unless self.order_date.nil? or self.order_date >= Date.today
