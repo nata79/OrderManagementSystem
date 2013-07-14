@@ -7,6 +7,11 @@ describe Product do
     build(:product, name: nil).should_not be_valid
   end
 
+  it 'has a uniq name' do
+    create(:product, name: 'Product Name')
+    build(:product, name: 'Product Name').should_not be_valid
+  end
+
   it 'has a net_price attribute with the type Money' do
     build(:product).should monetize(:net_price_pennies).as(:net_price)
   end
