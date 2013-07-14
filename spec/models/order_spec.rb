@@ -134,10 +134,7 @@ describe Order do
     let(:order) { create :order }    
 
     it 'returns the sum of the net_prices of the line_items' do
-      5.times do
-        product = create :product, net_price: Money.new(100, :gbp)
-        create :line_item, order: order, product: product
-      end
+      add_line_items order
 
       order.net_total.should eq Money.new(500, :gbp)
     end
@@ -151,10 +148,7 @@ describe Order do
     let(:order) { create :order }    
 
     it 'returns the sum of the net_prices of the line_items' do
-      5.times do
-        product = create :product, net_price: Money.new(100, :gbp)
-        create :line_item, order: order, product: product
-      end
+      add_line_items order
 
       order.gross_total.should eq Money.new(600, :gbp)
     end
