@@ -1,4 +1,5 @@
-# Order Management System [![Code Climate](https://codeclimate.com/github/nata79/OrderManagementSystem.png)](https://codeclimate.com/github/nata79/OrderManagementSystem) [![Build Status](https://travis-ci.org/nata79/OrderManagementSystem.png)](https://travis-ci.org/nata79/OrderManagementSystem)
+# Order Management System 
+[![Code Climate](https://codeclimate.com/github/nata79/OrderManagementSystem.png)](https://codeclimate.com/github/nata79/OrderManagementSystem) [![Build Status](https://travis-ci.org/nata79/OrderManagementSystem.png)](https://travis-ci.org/nata79/OrderManagementSystem) [![Coverage Status](https://coveralls.io/repos/nata79/OrderManagementSystem/badge.png)](https://coveralls.io/r/nata79/OrderManagementSystem)
 
 
 This is an application to manage products and orders. It doesn't have a GUI. The only interface is public REST Api.
