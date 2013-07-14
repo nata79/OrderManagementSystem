@@ -19,7 +19,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
   end
 private
   def load_order
-    @order = Order.find params[:id]
+    @order = Order.includes(line_items: :product).find(params[:id])
   end
 
   def order_params
