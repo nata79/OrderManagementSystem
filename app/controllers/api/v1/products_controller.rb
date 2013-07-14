@@ -14,7 +14,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
   end
 
   def update
-    @product.update_attributes product_params
+    @product.update_attributes! product_params
     render :show
   end
 
