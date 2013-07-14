@@ -11,6 +11,10 @@ describe StatusTransition do
     build(:status_transition, order: nil).should_not be_valid
   end
 
+  it 'requires a reason if event is cancel' do
+    build(:status_transition, event: 'cancel').should_not be_valid
+  end
+
   it 'does not accept an event that isnt place, pay or cancel' do
     build(:status_transition, event: :invalid).should_not be_valid
   end

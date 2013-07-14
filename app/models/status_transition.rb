@@ -6,6 +6,7 @@ class StatusTransition < ActiveRecord::Base
   enumerize :event, in: [:place, :pay, :cancel]
 
   validates :event, :order, :from, :to, presence: true
+  validates :reason, presence: true, if: :cancel?
 
   before_validation :set_from_status
   before_validation :set_to_status
@@ -23,5 +24,9 @@ private
 
   def execute_transition
     self.order.fire_status_event self.event
+  end
+
+  def cancel?
+    self.event == 'cancel'
   end
 end
