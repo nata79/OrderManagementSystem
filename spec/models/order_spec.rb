@@ -96,6 +96,28 @@ describe Order do
     end
   end
 
+  describe 'canceled status' do
+    let(:order) { create(:order) }
+    before { order.cancel }
+
+    it 'cannot be placed' do      
+      order.can_place?.should be_false
+    end
+
+    it 'cannot be canceled' do
+      order.can_cancel?.should be_false
+    end
+
+    it 'cannot be payed' do
+      order.can_pay?.should be_false
+    end
+
+    it 'cannot be updated' do
+      order.update_attributes vat: 0.15, order_date: Date.today
+      order.should_not be_valid
+    end
+  end
+
   describe 'locked?' do
     let(:order) { create(:order) }
 
@@ -110,6 +132,11 @@ describe Order do
 
     it 'returns true if status is payed' do      
       order.place; order.pay
+      order.locked?.should be_true
+    end
+
+    it 'returns true if status is canceled' do      
+      order.cancel
       order.locked?.should be_true
     end
   end

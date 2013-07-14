@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   validate :order_date_not_in_the_past, on: :create
   validate :should_not_be_updated, if: :locked?
 
-  before_validation :set_vat_default
+  before_validation :set_vat_default, on: :create
 
   before_destroy :prevent_destroy
 
@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
   end
 
   def locked?
-    self.placed? or self.payed?
+    self.placed? or self.payed? or self.canceled?
   end
 
   def status_after_event event
@@ -53,7 +53,7 @@ private
     end
   end
 
-  def set_vat_default
+  def set_vat_default    
     self.vat ||= (VAT or 0.2)
   end
 
