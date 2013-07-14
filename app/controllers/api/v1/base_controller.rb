@@ -3,6 +3,7 @@ class Api::V1::BaseController < ApplicationController
 
   rescue_from 'ActiveRecord::RecordNotFound', with: :not_found
   rescue_from 'ActiveRecord::RecordInvalid', with: :record_invalid
+  rescue_from 'ActionController::ParameterMissing', with: :record_invalid
 
   def send_error message, code
     render json: { error: message }, status: code
