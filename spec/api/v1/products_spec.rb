@@ -65,7 +65,7 @@ describe '/api/v1/products', type: :api do
 
     it 'returns a 400 if the net_price is 0' do 
       put api_v1_product_path product: { name: 'Valid Product', net_price_pennies: 0 }, id: product.id
-      last_response.status.should eq 200
+      last_response.status.should eq 400
     end    
 
     it 'returns a 404 if the product does not exist' do
