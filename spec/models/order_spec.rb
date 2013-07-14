@@ -129,4 +129,38 @@ describe Order do
       create(:order).status_after_event(:cancel).should eq 'canceled'
     end
   end
+
+  describe 'net_total' do
+    let(:order) { create :order }    
+
+    it 'returns the sum of the net_prices of the line_items' do
+      5.times do
+        product = create :product, net_price: Money.new(100, :gbp)
+        create :line_item, order: order, product: product
+      end
+
+      order.net_total.should eq Money.new(500, :gbp)
+    end
+
+    it 'returns 0 if ther is no line item' do
+      order.net_total.should eq Money.new(0)
+    end
+  end
+
+  describe 'gross_total' do
+    let(:order) { create :order }    
+
+    it 'returns the sum of the net_prices of the line_items' do
+      5.times do
+        product = create :product, net_price: Money.new(100, :gbp)
+        create :line_item, order: order, product: product
+      end
+
+      order.gross_total.should eq Money.new(600, :gbp)
+    end
+
+    it 'returns 0 if ther is no line item' do
+      order.gross_total.should eq Money.new(0)
+    end
+  end
 end
