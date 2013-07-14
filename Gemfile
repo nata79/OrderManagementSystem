@@ -23,3 +23,5 @@ group :development, :test do
   gem 'capybara'
   gem 'timecop'
 end
+
+gem 'simplecov', require: false, group: :test
