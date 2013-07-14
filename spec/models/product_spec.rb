@@ -19,4 +19,11 @@ describe Product do
   it 'requires a net price higher than 0' do
     build(:product, net_price: Money.new(0, :gbp)).should_not be_valid
   end
+
+  it 'cant be destroyed if there is line items' do
+    product = create :product
+    line_item = create :line_item, product: product
+    product.destroy
+    Product.exists?(product).should be_true
+  end
 end
