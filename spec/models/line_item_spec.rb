@@ -59,6 +59,13 @@ describe LineItem do
       line_item.update_attributes quantity: 20
       line_item.should_not be_valid
     end
+
+    it 'cant be destroyed' do
+      line_item = create(:line_item, order: order)
+      order.place
+      line_item.destroy
+      LineItem.exists?(line_item).should be_true
+    end
   end
 
   describe 'order in payed status' do
@@ -74,6 +81,13 @@ describe LineItem do
       order.place; order.pay
       line_item.update_attributes quantity: 20
       line_item.should_not be_valid
+    end
+
+    it 'cant be destroyed' do
+      line_item = create(:line_item, order: order)
+      order.place
+      line_item.destroy
+      LineItem.exists?(line_item).should be_true
     end
   end
 end
