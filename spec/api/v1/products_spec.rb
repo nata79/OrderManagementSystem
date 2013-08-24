@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe '/api/v1/products', type: :api do
+describe '/api/v1/products', :api do
   before { host! 'example.org' }
 
   let(:product_count) { 10 }

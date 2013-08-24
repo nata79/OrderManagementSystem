@@ -24,8 +24,10 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
 
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+
   config.include FactoryGirl::Syntax::Methods
-  config.include Rack::Test::Methods
+  config.include Rack::Test::Methods, api: true
   config.include OrdersHelper
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

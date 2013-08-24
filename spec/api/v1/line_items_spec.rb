@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe '/api/v1/orders/:id/line_items', type: :api do
+describe '/api/v1/orders/:id/line_items', :api do
   before { host! 'example.org' }  
   
   let(:order) { create :order }
