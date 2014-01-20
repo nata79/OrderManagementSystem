@@ -1,4 +1,6 @@
 class Api::V1::BaseController < ApplicationController
+  doorkeeper_for :all
+  
   respond_to :json
 
   rescue_from 'ActiveRecord::RecordNotFound', with: :not_found
